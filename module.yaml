@@ -1,7 +1,7 @@
-full-build *default:
+notests *default:
   build:
     target: Vostok.Commons.Testing.sln
-    configuration: Release
+    configuration: NoTests
     tool:
       name: dotnet
 
@@ -10,3 +10,9 @@ full-build *default:
 
   deps:
     - vostok.commons@dev
+    - vostok.devtools
+
+full-build > notests:
+  build:
+    target: Vostok.Commons.Testing.sln
+    configuration: Release
