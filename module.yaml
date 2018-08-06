@@ -9,7 +9,7 @@ notests *default:
     - Vostok.Commons.Testing/bin/Release/netstandard2.0/Vostok.Commons.Testing.dll
 
   deps:
-    - vostok.commons@dev
+    - vostok.commons.helpers/src
     - vostok.devtools
 
 full-build > notests:
