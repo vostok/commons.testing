@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using JetBrains.Annotations;
 using NSubstitute.Exceptions;
 using NUnit.Framework;
-using Vostok.Commons.Helpers;
 using Vostok.Commons.Helpers.Conversions;
 
 namespace Vostok.Commons.Testing
@@ -16,9 +16,9 @@ namespace Vostok.Commons.Testing
 
         public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait, TimeSpan pause)
         {
-            var budget = TimeBudget.StartNew(wait);
+            var watch = Stopwatch.StartNew();
 
-            while (!budget.HasExpired())
+            while (watch.Elapsed < wait)
             {
                 try
                 {
@@ -43,9 +43,9 @@ namespace Vostok.Commons.Testing
 
         public static void ShouldNotFailIn([NotNull] this Action assertion, TimeSpan wait, TimeSpan pause)
         {
-            var budget = TimeBudget.StartNew(wait);
+            var watch = Stopwatch.StartNew();
 
-            while (!budget.HasExpired())
+            while (watch.Elapsed < wait)
             {
                 assertion();
                 Thread.Sleep(pause);
