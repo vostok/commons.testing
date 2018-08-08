@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Threading;
+using JetBrains.Annotations;
 using NSubstitute.Exceptions;
 using NUnit.Framework;
-using Vostok.Commons.Conversions;
-using Vostok.Commons.Time;
+using Vostok.Commons.Helpers;
+using Vostok.Commons.Helpers.Conversions;
 
 namespace Vostok.Commons.Testing
 {
+    [PublicAPI]
     public static class AssertionAssertions
     {
-        public static void ShouldPassIn(this Action assertion, TimeSpan wait) =>
+        public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait) =>
             assertion.ShouldPassIn(wait, 10.Milliseconds());
 
-        public static void ShouldPassIn(this Action assertion, TimeSpan wait, TimeSpan pause)
+        public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait, TimeSpan pause)
         {
             var budget = TimeBudget.StartNew(wait);
 
@@ -36,10 +38,10 @@ namespace Vostok.Commons.Testing
             assertion();
         }
 
-        public static void ShouldNotFailIn(this Action assertion, TimeSpan wait) =>
+        public static void ShouldNotFailIn([NotNull] this Action assertion, TimeSpan wait) =>
             ShouldNotFailIn(assertion, wait, 10.Milliseconds());
 
-        public static void ShouldNotFailIn(this Action assertion, TimeSpan wait, TimeSpan pause)
+        public static void ShouldNotFailIn([NotNull] this Action assertion, TimeSpan wait, TimeSpan pause)
         {
             var budget = TimeBudget.StartNew(wait);
 
