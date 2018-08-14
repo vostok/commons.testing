@@ -9,7 +9,7 @@ using Vostok.Commons.Helpers.Conversions;
 namespace Vostok.Commons.Testing
 {
     [PublicAPI]
-    public static class AssertionAssertions
+    internal static class AssertionAssertions
     {
         public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait) =>
             assertion.ShouldPassIn(wait, 10.Milliseconds());
