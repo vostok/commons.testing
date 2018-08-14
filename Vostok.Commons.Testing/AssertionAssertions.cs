@@ -4,7 +4,6 @@ using System.Threading;
 using JetBrains.Annotations;
 using NSubstitute.Exceptions;
 using NUnit.Framework;
-using Vostok.Commons.Helpers.Conversions;
 
 namespace Vostok.Commons.Testing
 {
@@ -12,7 +11,7 @@ namespace Vostok.Commons.Testing
     internal static class AssertionAssertions
     {
         public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait) =>
-            assertion.ShouldPassIn(wait, 10.Milliseconds());
+            assertion.ShouldPassIn(wait, TimeSpan.FromMilliseconds(10));
 
         public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait, TimeSpan pause)
         {
@@ -39,7 +38,7 @@ namespace Vostok.Commons.Testing
         }
 
         public static void ShouldNotFailIn([NotNull] this Action assertion, TimeSpan wait) =>
-            ShouldNotFailIn(assertion, wait, 10.Milliseconds());
+            ShouldNotFailIn(assertion, wait, TimeSpan.FromMilliseconds(10));
 
         public static void ShouldNotFailIn([NotNull] this Action assertion, TimeSpan wait, TimeSpan pause)
         {

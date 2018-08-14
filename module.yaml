@@ -5,18 +5,18 @@ src:
 
 notests *default:
   build:
-    target: Vostok.Commons.Collections.sln
+    target: Vostok.Commons.Testing.sln
     configuration: NoTests
     tool:
       name: dotnet
 
   install:
-    - Vostok.Commons.Collections/bin/Release/netstandard2.0/Vostok.Commons.Collections.dll
+    - Vostok.Commons.Testing/bin/Release/netstandard2.0/Vostok.Commons.Testing.dll
 
   deps:
     - vostok.devtools
 
 full-build > notests:
   build:
-    target: Vostok.Commons.Collections.sln
+    target: Vostok.Commons.Testing.sln
     configuration: Release
