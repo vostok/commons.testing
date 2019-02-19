@@ -18,6 +18,12 @@ namespace Vostok.Commons.Testing
             task.Wait(timeout).Should().BeTrue();
         }
 
+        public static T ShouldCompleteIn<T>(this Task<T> task, TimeSpan timeout)
+        {
+            task.Wait(timeout).Should().BeTrue();
+            return task.Result;
+        }
+
         public static void ShouldCompleteWithErrorIn<TException>(this Task task, TimeSpan timeout)
             where TException : Exception
         {
