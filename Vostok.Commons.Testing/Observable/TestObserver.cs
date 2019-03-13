@@ -9,6 +9,8 @@ namespace Vostok.Commons.Testing.Observable
     [PublicAPI]
     internal class TestObserver<T> : IObserver<T>
     {
+        private readonly object lockObject = new object();
+        private readonly List<Notification<T>> messages = new List<Notification<T>>();
         public IList<Notification<T>> Messages
         {
             get
@@ -19,9 +21,6 @@ namespace Vostok.Commons.Testing.Observable
         }
 
         public IList<T> Values => Messages.Select(message => message.Value).ToList();
-        
-        private readonly object lockObject = new object();
-        private readonly List<Notification<T>> messages = new List<Notification<T>>();
 
         public void OnNext(T value)
         {
