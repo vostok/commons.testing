@@ -18,7 +18,7 @@ namespace Vostok.Commons.Testing.Observable
                 .Should()
                 .Equal(values);
         }
-        
+
         public static void ShouldCompleteWithError<T>(this IObservable<T> observable, Exception error)
         {
             var observer = new TestObserver<T>();
