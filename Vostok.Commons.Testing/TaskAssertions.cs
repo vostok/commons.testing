@@ -13,6 +13,12 @@ namespace Vostok.Commons.Testing
             task.IsCompleted.Should().BeTrue();
         }
 
+        public static T ShouldCompleteImmediately<T>(this Task<T> task)
+        {
+            task.IsCompleted.Should().BeTrue();
+            return task.Result;
+        }
+
         public static void ShouldCompleteIn(this Task task, TimeSpan timeout)
         {
             task.Wait(timeout).Should().BeTrue();
