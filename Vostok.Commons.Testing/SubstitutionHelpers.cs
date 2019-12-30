@@ -26,7 +26,7 @@ namespace Vostok.Commons.Testing
 
         public static ConfiguredCall ReturnsError<T>(this Task<T> value, Exception error)
         {
-            var completionSource = new TaskCompletionSource<T>();
+            var completionSource = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
             completionSource.SetException(error);
 
             return value.Returns(completionSource.Task);
