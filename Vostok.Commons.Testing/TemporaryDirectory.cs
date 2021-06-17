@@ -14,6 +14,10 @@ namespace Vostok.Commons.Testing
             Info.Refresh();
         }
 
+        public DirectoryInfo Info { get; }
+
+        public string Path => Info.FullName;
+
         public void Dispose()
         {
             Info.Refresh();
@@ -26,9 +30,5 @@ namespace Vostok.Commons.Testing
 
             Info.Delete(true);
         }
-
-        public DirectoryInfo Info { get; }
-
-        public string Path => Info.FullName;
     }
 }
