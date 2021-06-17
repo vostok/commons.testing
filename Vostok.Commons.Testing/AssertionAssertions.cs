@@ -10,8 +10,10 @@ namespace Vostok.Commons.Testing
     [PublicAPI]
     internal static class AssertionAssertions
     {
+        public static TimeSpan CheckPause = TimeSpan.FromMilliseconds(10);
+
         public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait) =>
-            assertion.ShouldPassIn(wait, TimeSpan.FromMilliseconds(10));
+            assertion.ShouldPassIn(wait, CheckPause);
 
         public static void ShouldPassIn([NotNull] this Action assertion, TimeSpan wait, TimeSpan pause)
         {
